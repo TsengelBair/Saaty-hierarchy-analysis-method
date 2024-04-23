@@ -1,0 +1,45 @@
+
+.inputs {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .inputs > div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  select,
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .button_2 {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .button_3{
+    padding: 10px 20px;
+    background-color: #2d5ad4;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #c41cd3;
+  }

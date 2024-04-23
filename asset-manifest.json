@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Saaty-hierarchy-analysis-method/static/css/main.319d87be.css",
+    "main.js": "/Saaty-hierarchy-analysis-method/static/js/main.dc3f4fe9.js",
+    "index.html": "/Saaty-hierarchy-analysis-method/index.html",
+    "main.319d87be.css.map": "/Saaty-hierarchy-analysis-method/static/css/main.319d87be.css.map",
+    "main.dc3f4fe9.js.map": "/Saaty-hierarchy-analysis-method/static/js/main.dc3f4fe9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.319d87be.css",
+    "static/js/main.dc3f4fe9.js"
+  ]
+}

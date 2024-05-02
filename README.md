@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+### Метод анализа иерархий Саати
+Метод анализа иерархий, разработанный Томасом Саати, представляет собой математический инструмент для систематического сравнения и оценки альтернативных вариантов по их относительной значимости в иерархической структуре целей или критериев. Этот метод базируется на принципе парных сравнений, где эксперты оценивают относительную важность каждой пары альтернатив, что затем позволяет выявить иерархию приоритетов и принять обоснованные решения
+Рассмотрим методику применения анализа иерархий. Процесс работы с моделью начинается с создания иерархической структуры, которая включает в себя цели, основные критерии и альтернативы
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Схема](./img/schema.jpg)
 
-## Available Scripts
+На верхнем уровне представлена цель, которая подвергается воздействию ряда критериев, размещенных на следующем уровне иерархии. Каждый из этих критериев обладает собственными характеристиками, оцениваемыми количественно. Коллективное взаимодействие этих критериев в процессе моделирования порождает несколько альтернатив, из которых по итогу выбирается наиболее подходящее.
 
-In the project directory, you can run:
+## Пример
+Человек хочет приобрести абонемент в фитнес клуб и определяет наиболее значимые критерии клуба:
 
-### `npm start`
+1) Удаленность 
+2) Размер 
+3) Посещаемость
+4) Цена
+5) Оборудование
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+И также кандидатов
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1) Профитнес
+2) Скульпторс
+3) Легенда
 
-### `npm test`
+Схема будет выглядеть следующим образом
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Схема2](./img/schema2.jpg)
 
-### `npm run build`
+В самом приложении выбираем необходимое количество систем и характеристик и вводим их названия
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Скриншот1](./img/web1.jpg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+После ввода систем и названий необходимо заполнить матрицу попарных сравнений второго уровня.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Это матрица отражающая отношения характеристик (кажадя к каждой) и обладающая свойством обратно симметричной матрицы 
 
-### `npm run eject`
+![Скриншот1](./img/obratno.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+После заполнения матрицы необходимо рассчитать нормализованные оценки 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Рассчеты осуществляются следующим образом:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1) Находим произведение по строке и извлекаем корень из n, где n - количество элементов.
+Найденное произведение и будет оценкой  
+![Произведение](./img/multi.jpg)
+2) Найденные оценки необходимо нормализовать, для этого находим сумму всех оценок и каждую оценку делим на найденную сумму
+![Сумма](./img/sum.jpg)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Скриншот1](./img/matrix2.jpg)
 
-## Learn More
+После расчета нормализованных оценок для матрицы 2-го уровня, создаем матрицы 3-го уровня, в которых проводим попарное сравнение всех систем по каждой характеристике
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Матрицы 3-го уровня](./img/matrix3.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Эти матрицы обладают такими же свойствами, как матрица второго уровня и расчеты нормализованных оценок идентичны
 
-### Code Splitting
+Последний этап - расчет глобальных оценок
+![Рассчет глобальных](./img/global.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Столбцы a – транспонированные матрицы, полученные после расчета матриц 3-го уровня, компоненты x – это нормализованные оценки матрицы 2-го уровня.
+Глобальные оценки считаются путем перемножения элементов строки с соответствующими компонентами нормализованных оценок матрицы 2-го уровня (х), произведения суммируются и получаются итоговые оценки.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Рассчет глобальных](./img/res.jpg)

@@ -61,14 +61,14 @@ const Matrix2 = ({ characteristicCount, characteristicNames, onNormalizedMarksCh
           <tr>
             <th></th>
             {characteristicNames.map((name, index) => (
-              <th key={index}>{name || `Характеристика ${index + 1}`}</th>
+              <th key={index}>{name || `Characteristic ${index + 1}`}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {matrix.map((row, rowIndex) => (
             <tr key={rowIndex}>
-              <td>{characteristicNames[rowIndex] || `Характеристика ${rowIndex + 1}`}</td>
+              <td>{characteristicNames[rowIndex] || `Characteristic ${rowIndex + 1}`}</td>
               {row.map((cell, colIndex) => (
                 <td key={colIndex}>
                   <input
@@ -83,13 +83,13 @@ const Matrix2 = ({ characteristicCount, characteristicNames, onNormalizedMarksCh
           ))}
         </tbody>
       </table>
-      <button onClick={handleCalculateClick}>Рассчитать нормализованные оценки</button>
+      <button onClick={handleCalculateClick}>Calculate normalized marks</button>
       {normalizedMarks.length > 0 && (
         <div>
-          <h3>Нормализованные оценки:</h3>
+          <h3>Normalized marks:</h3>
           <ul>
             {normalizedMarks.map((mark, index) => (
-              <li key={index}>{`Нормализованная оценка ${index + 1}: ${mark}`}</li>
+              <li key={index}>{`Normalized mark ${index + 1}: ${mark}`}</li>
             ))}
           </ul>
         </div>

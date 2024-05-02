@@ -52,7 +52,7 @@ const Datas = () => {
     <div className="container">
       <div className="inputs">
         <div>
-          <label htmlFor="characteristicCount">Введите кол-во характеристик:</label>
+          <label htmlFor="characteristicCount">Enter characteristic count:</label>
           <select id="characteristicCount" value={characteristicCount} onChange={handleCharacteristicChange}>
             {[5, 6, 7, 8, 9, 10].map((count) => (
               <option key={count} value={count}>{count}</option>
@@ -69,7 +69,7 @@ const Datas = () => {
           ))}
         </div>
         <div>
-          <label htmlFor="systemCount">Введите кол-во систем:</label>
+          <label htmlFor="systemCount">Enter system count:</label>
           <select id="systemCount" value={systemCount} onChange={handleSystemChange}>
             {[1, 2, 3, 4, 5].map((count) => (
               <option key={count} value={count}>{count}</option>
@@ -85,8 +85,8 @@ const Datas = () => {
             />
           ))}
         </div>
-        <button className="button_2" onClick={handleMatrix2Click}>Ввести матрицу 2-го уровня</button>
-        <button className="button_3" onClick={handleMatrix3Click}>Ввести матрицы 3-го уровня</button>
+        <button className="button_2" onClick={handleMatrix2Click}>Enter second level matrix</button>
+        <button className="button_3" onClick={handleMatrix3Click}>Enter third level matrix</button>
       </div>
       {matrix2Visible && 
         <Matrix2 

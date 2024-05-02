@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 
 const Matrix3 = ({ characteristicCount, systemNames, normalizedMarks }) => {
   const [matrices, setMatrices] = useState(() => {
-    // Создаем начальный массив матриц
     const initialMatrices = Array.from({ length: characteristicCount }, () =>
       Array.from({ length: systemNames.length }, () => Array(systemNames.length).fill(''))
     );
 
-    // Заполняем каждую матрицу
     initialMatrices.forEach(matrix => {
       matrix.forEach((row, i) => {
         row.forEach((_, j) => {
@@ -24,13 +22,11 @@ const Matrix3 = ({ characteristicCount, systemNames, normalizedMarks }) => {
   const [normalizedMarks3, setNormalizedMarks3] = useState([]);
   const [globalMarks, setGlobalMarks] = useState([]);
 
-  // Функция для обновления значения ячейки матрицы
   const handleMatrixChange = (matrixIndex, rowIndex, colIndex, event) => {
     const newValue = event.target.value;
     const newMatrices = [...matrices];
     newMatrices[matrixIndex][rowIndex][colIndex] = newValue;
 
-    // Обновляем обратно симметричный элемент
     if (newValue !== '' && parseFloat(newValue) !== 0) {
       const reciprocal = 1 / parseFloat(newValue);
       newMatrices[matrixIndex][colIndex][rowIndex] = reciprocal.toFixed(2);
@@ -64,15 +60,13 @@ const Matrix3 = ({ characteristicCount, systemNames, normalizedMarks }) => {
   const handleCalculateGlobalClick = () => {
     const calculatedGlobalMarks = [];
     if (normalizedMarks.length === 0 || normalizedMarks3.length === 0) {
-      console.log("Нормализованные оценки еще не рассчитаны.");
+      console.log("Normalized marks have not yet been calculated.");
       return;
     }
-    
-    // Итерация по каждой системе
+
     for (let i = 0; i < systemNames.length; i++) {
       let mark = 0;
-      
-      // Рассчитываем оценку для текущей системы
+
       for (let j = 0; j < characteristicCount; j++) {
         mark += parseFloat(normalizedMarks[j]) * parseFloat(normalizedMarks3[j][i]);
       }
@@ -81,16 +75,16 @@ const Matrix3 = ({ characteristicCount, systemNames, normalizedMarks }) => {
     }
   
     setGlobalMarks(calculatedGlobalMarks);
+    console.log(normalizedMarks3);
+    console.log(normalizedMarks);
   };
   
 
   return (
     <div>
-      {/* Итерация по каждой характеристике */}
       {matrices.map((matrix, matrixIndex) => (
         <div key={matrixIndex}>
-          <h3>{`Характеристика ${matrixIndex + 1}`}</h3>
-          {/* Создание матрицы */}
+          <h3>{`Characteristic ${matrixIndex + 1}`}</h3>
           <table>
             <thead>
               <tr>
@@ -120,24 +114,24 @@ const Matrix3 = ({ characteristicCount, systemNames, normalizedMarks }) => {
           </table>
           {normalizedMarks3.length > 0 && normalizedMarks3[matrixIndex] && (
             <div>
-              <h3>Нормализованные оценки для Характеристики {matrixIndex + 1}:</h3>
+              <h3>Normalized mark for characteristic {matrixIndex + 1}:</h3>
               <ul>
                 {normalizedMarks3[matrixIndex].map((mark, index) => (
-                  <li key={index}>{`Нормализованная оценка ${index + 1}: ${mark}`}</li>
+                  <li key={index}>{`Normalized mark ${index + 1}: ${mark}`}</li>
                 ))}
               </ul>
             </div>
           )}
         </div>
       ))}
-      <button onClick={handleCalculateClick}>Рассчитать нормализованные оценки для всех матриц</button>
-      <button onClick={handleCalculateGlobalClick}>Рассчитать глобальные оценки</button>
+      <button onClick={handleCalculateClick}>Calcualate normalized marks for all matrix</button>
+      <button onClick={handleCalculateGlobalClick}>Calculate global marks</button>
       {globalMarks.length > 0 && (
         <div>
-          <h3>Глобальные оценки:</h3>
+          <h3>Global marks:</h3>
           <ul>
             {globalMarks.map((mark, index) => (
-              <li key={index}>{`Система ${index + 1}: ${mark}`}</li>
+              <li key={index}>{`System ${index + 1}: ${mark}`}</li>
             ))}
           </ul>
         </div>
